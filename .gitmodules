@@ -1,0 +1,4 @@
+[submodule "dspatch"]
+	path = dspatch
+	url = https://github.com/cross-platform/dspatch.git
+	branch = master
