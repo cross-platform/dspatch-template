@@ -1,5 +1,6 @@
+#include "components.h"
+
 #include <DSPatch.h>
-#include <components.h>
 
 using namespace DSPatch;
 
