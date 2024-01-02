@@ -37,18 +37,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace DSPatch
 {
 
-// And:
-// And has 2 inputs and 1 output.
+// AndBool:
+// AndBool has 2 inputs and 1 output.
 // This component performs a logic AND on 2 boolean input values and outputs the result.
 
-// 1. Derive And class from Component
-// ==================================
-class And final : public Component
+// 1. Derive AndBool class from Component
+// ======================================
+class AndBool final : public Component
 {
 public:
     // 2. Configure component IO buses
     // ===============================
-    And()
+    AndBool()
+        // the order in which buffers are Process_()'ed is not important
+        : Component( ProcessOrder::OutOfOrder )
     {
         // add 2 inputs
         SetInputCount_( 2 );
@@ -75,14 +77,16 @@ protected:
     }
 };
 
-// RandBool:
-// RandBool has 1 output.
+// GenBool:
+// GenBool has 1 output.
 // This component generates a random boolean value then outputs the result.
 
-class RandBool final : public Component
+class GenBool final : public Component
 {
 public:
-    RandBool()
+    GenBool()
+        // the order in which buffers are Process_()'ed is not important
+        : Component( ProcessOrder::OutOfOrder )
     {
         // add 1 output
         SetOutputCount_( 1 );
@@ -107,6 +111,8 @@ class PrintBool final : public Component
 {
 public:
     PrintBool()
+        // here, the order in which buffers are Process_()'ed is important
+        : Component( ProcessOrder::InOrder )
     {
         // add 1 input
         SetInputCount_( 1 );
