@@ -34,16 +34,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ctime>
 #include <iostream>
 
-namespace DSPatch
-{
-
 // AndBool:
 // AndBool has 2 inputs and 1 output.
 // This component performs a logic AND on 2 boolean input values and outputs the result.
 
 // 1. Derive AndBool class from Component
 // ======================================
-class AndBool final : public Component
+class AndBool final : public DSPatch::Component
 {
 public:
     // 2. Configure component IO buses
@@ -62,7 +59,7 @@ public:
 protected:
     // 3. Implement virtual Process_() method
     // ======================================
-    void Process_( SignalBus& inputs, SignalBus& outputs ) override
+    void Process_( DSPatch::SignalBus& inputs, DSPatch::SignalBus& outputs ) override
     {
         // create some local pointers to hold our input values
         auto bool1 = inputs.GetValue<bool>( 0 );
@@ -81,7 +78,7 @@ protected:
 // GenBool has 1 output.
 // This component generates a random boolean value then outputs the result.
 
-class GenBool final : public Component
+class GenBool final : public DSPatch::Component
 {
 public:
     GenBool()
@@ -96,7 +93,7 @@ public:
     }
 
 protected:
-    void Process_( SignalBus&, SignalBus& outputs ) override
+    void Process_( DSPatch::SignalBus&, DSPatch::SignalBus& outputs ) override
     {
         // set output as randomized true / false
         outputs.SetValue( 0, rand() % 2 == 0 );
@@ -107,7 +104,7 @@ protected:
 // PrintBool has 1 input.
 // This component receives a boolean value and outputs it to the console.
 
-class PrintBool final : public Component
+class PrintBool final : public DSPatch::Component
 {
 public:
     PrintBool()
@@ -119,7 +116,7 @@ public:
     }
 
 protected:
-    void Process_( SignalBus& inputs, SignalBus& ) override
+    void Process_( DSPatch::SignalBus& inputs, DSPatch::SignalBus& ) override
     {
         // create a local stack variable to hold input value
         auto inputBool = inputs.GetValue<bool>( 0 );
@@ -139,5 +136,3 @@ protected:
         }
     }
 };
-
-}  // namespace DSPatch
