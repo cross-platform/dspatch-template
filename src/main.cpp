@@ -30,8 +30,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <DSPatch.h>
 
-using namespace DSPatch;
-
 //  The code below results in the following wiring configuration:
 //   __________            _________
 //  |          |          |         |
@@ -46,7 +44,7 @@ int main()
 {
     // 1. Create a circuit where we can route our components
     // =====================================================
-    auto circuit = std::make_shared<Circuit>();
+    auto circuit = std::make_shared<DSPatch::Circuit>();
 
     // 2. Create instances of the components needed for our circuit
     // ============================================================
