@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 # build dspatch
 
-set(BUILD_STATIC ON CACHE BOOL "" FORCE)
+option(BUILD_STATIC "" ON)
 add_subdirectory(dspatch)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dspatch/include)
 
